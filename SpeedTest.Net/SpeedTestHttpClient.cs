@@ -78,7 +78,7 @@ namespace SpeedTest.Net
                 if (string.IsNullOrEmpty(server?.Url?.Trim()))
                     throw new Exception("Failed to get download speed");
 
-                var downloadUrls = GenerateDownloadUrls(server);
+                var downloadUrls = GenerateDownloadUrls(server, 3);
 
                 double totalSize = 0;
                 var startTime = DateTime.Now;
@@ -98,7 +98,7 @@ namespace SpeedTest.Net
                 return new DownloadSpeed
                 {
                     Server = server,
-                    Speed = (totalSize * 8 / 1024) / elapsedSeconds // KB/s
+                    Speed = (totalSize / 1024) / elapsedSeconds // KB/s
                 };
             }
             catch (Exception ex)
