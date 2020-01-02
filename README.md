@@ -1,5 +1,5 @@
 # SpeedTest.Net
-A simple https://speedtest.net client to calculate download speed in KB/s.
+A simple https://speedtest.net client to calculate download speed in KB/s. Made with love using .Net Core.
 
 #### Get a Server closest to your location
 ```
