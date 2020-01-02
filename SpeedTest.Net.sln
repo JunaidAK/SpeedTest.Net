@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeedTest.Net", "SpeedTest.Net\SpeedTest.Net.csproj", "{4BCD288B-2E10-4761-A765-E37D9FA0FCFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeedTest.Net.Usage", "SpeedTest.Net.Usage\SpeedTest.Net.Usage.csproj", "{18AEA29E-2574-48E4-8CEC-808C5903E062}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4BCD288B-2E10-4761-A765-E37D9FA0FCFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BCD288B-2E10-4761-A765-E37D9FA0FCFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BCD288B-2E10-4761-A765-E37D9FA0FCFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BCD288B-2E10-4761-A765-E37D9FA0FCFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18AEA29E-2574-48E4-8CEC-808C5903E062}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18AEA29E-2574-48E4-8CEC-808C5903E062}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18AEA29E-2574-48E4-8CEC-808C5903E062}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18AEA29E-2574-48E4-8CEC-808C5903E062}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {078DEBF7-9779-4323-A64C-EC2C193613E5}
+	EndGlobalSection
+EndGlobal
