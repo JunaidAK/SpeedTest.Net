@@ -76,7 +76,7 @@ namespace SpeedTest.Net.Usage
             catch (System.Exception ex)
             {
                 ShowMessage(ex.Message);
-                SpeedGrid.IsEnabled = true;
+                SpeedGrid.IsEnabled = true; 
             }
         }
 
