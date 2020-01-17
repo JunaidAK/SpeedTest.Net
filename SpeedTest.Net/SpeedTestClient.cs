@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using SpeedTest.Net.Enums;
 using SpeedTest.Net.Models;
 
 namespace SpeedTest.Net
@@ -11,8 +12,9 @@ namespace SpeedTest.Net
         /// Calculates download speed using the provided server
         /// </summary>
         /// <param name="server">The server object used for downloading files</param>
+        /// <param name="unit">Unit in which Speed Test response should be returned</param>
         /// <returns>Download speed in KB/s</returns>
-        public static async Task<DownloadSpeed> GetDownloadSpeed(Server server = null) => await Client.GetDownloadSpeed(server);
+        public static async Task<DownloadSpeed> GetDownloadSpeed(Server server = null, SpeedTestUnit unit = SpeedTestUnit.KiloBytesPerSecond) => await Client.GetDownloadSpeed(server, unit);
 
         /// <summary>
         /// Finds the closest server to the provided co-ordinates

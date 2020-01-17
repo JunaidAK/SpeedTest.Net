@@ -4,5 +4,6 @@
     {
         public Server Server { get; internal set; }
         public double Speed { get; internal set; }
+        public string Unit { get; internal set; }
     }
 }

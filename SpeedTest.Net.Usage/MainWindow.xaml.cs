@@ -69,8 +69,8 @@ namespace SpeedTest.Net.Usage
             try
             {
                 SpeedGrid.IsEnabled = false;
-                var speed = await SpeedTestClient.GetDownloadSpeed(server);
-                ShowMessage($"Download Speed: {speed?.Speed} KB/s (Server Id = {speed?.Server?.Id})");
+                var speed = await SpeedTestClient.GetDownloadSpeed(server, Enums.SpeedTestUnit.KiloBitsPerSecond);
+                ShowMessage($"Download Speed: {speed?.Speed} {speed.Unit} (Server Id = {speed?.Server?.Id})");
                 SpeedGrid.IsEnabled = true;
             }
             catch (System.Exception ex)

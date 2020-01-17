@@ -1,4 +1,6 @@
 ﻿using Newtonsoft.Json;
+using SpeedTest.Net.Enums;
+using SpeedTest.Net.Helpers;
 using SpeedTest.Net.LocalData;
 using SpeedTest.Net.Models;
 using System;
@@ -55,10 +57,15 @@ namespace SpeedTest.Net
             }
         }
 
-        internal async Task<Server> GetServer()
+        internal async Task<Server> GetServer(string ip = "")
         {
             try
             {
+                var url = "https://ipinfo.io/json";
+
+                if (!string.IsNullOrEmpty(ip?.Trim()))
+                    url = $"https://ipinfo.io/{ip}/json";
+
                 var loc = JsonConvert.DeserializeObject<LocationModel>(await GetStringAsync("https://ipinfo.io/json"));
                 return await GetServer(loc.Latitude, loc.Longitude);
             }
@@ -68,7 +75,7 @@ namespace SpeedTest.Net
             }
         }
 
-        internal async Task<DownloadSpeed> GetDownloadSpeed(Server server = null)
+        internal async Task<DownloadSpeed> GetDownloadSpeed(Server server = null, SpeedTestUnit unit = SpeedTestUnit.KiloBytesPerSecond)
         {
             try
             {
@@ -95,10 +102,13 @@ namespace SpeedTest.Net
 
                 var elapsedSeconds = (DateTime.Now - startTime).TotalSeconds;
 
+                var bytesPerSecond = totalSize / elapsedSeconds;
+
                 return new DownloadSpeed
                 {
                     Server = server,
-                    Speed = (totalSize / 1024) / elapsedSeconds // KB/s
+                    Speed = bytesPerSecond.FromBytesPerSecondTo(unit),
+                    Unit = unit.ToShortIdentifier()
                 };
             }
             catch (Exception ex)
