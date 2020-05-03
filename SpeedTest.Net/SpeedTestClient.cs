@@ -13,7 +13,7 @@ namespace SpeedTest.Net
         /// </summary>
         /// <param name="server">The server object used for downloading files</param>
         /// <param name="unit">Unit in which Speed Test response should be returned</param>
-        /// <returns>Download speed in KB/s</returns>
+        /// <returns>An instance of type DownloadSpeed</returns>
         public static async Task<DownloadSpeed> GetDownloadSpeed(Server server = null, SpeedTestUnit unit = SpeedTestUnit.KiloBytesPerSecond) => await Client.GetDownloadSpeed(server, unit);
 
         /// <summary>
@@ -21,13 +21,13 @@ namespace SpeedTest.Net
         /// </summary>
         /// <param name="latitude">Latitude of the location</param>
         /// <param name="longitude">Longitude of the location</param>
-        /// <returns>Server object close to the provided latitude and longitude</returns>
+        /// <returns>An instance of type Server close to the provided latitude and longitude</returns>
         public static async Task<Server> GetServer(double latitude, double longitude) => await Client.GetServer(latitude, longitude);
 
         /// <summary>
         /// Finds the best server based on the callee location
         /// </summary>
-        /// <returns>Server object close to the callee location</returns>
+        /// <returns>An instance of type Server close to the callee location</returns>
         public static async Task<Server> GetServer() => await Client.GetServer();
     }
 }

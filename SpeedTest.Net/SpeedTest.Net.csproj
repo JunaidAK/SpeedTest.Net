@@ -2,7 +2,8 @@
 
   <PropertyGroup>
     <TargetFrameworks>netcoreapp3.1;net45</TargetFrameworks>
-    <Version>1.2.0</Version>
+    <Version>2.0.0</Version>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">

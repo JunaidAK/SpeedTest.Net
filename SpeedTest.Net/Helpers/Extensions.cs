@@ -4,6 +4,14 @@ namespace SpeedTest.Net.Helpers
 {
     internal static class Extensions
     {
+        internal static string ToSourceString(this SpeedTestSource source)
+        {
+            if (source == SpeedTestSource.Fast)
+                return "fast.com";
+
+            return "speedtest.net";
+        }
+
         internal static string ToShortIdentifier(this SpeedTestUnit unit)
         {
             if (unit == SpeedTestUnit.MegaBytesPerSecond)

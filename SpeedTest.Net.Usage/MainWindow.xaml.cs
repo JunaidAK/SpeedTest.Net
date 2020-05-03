@@ -1,4 +1,5 @@
-﻿using SpeedTest.Net.Models;
+﻿using SpeedTest.Net.Enums;
+using SpeedTest.Net.Models;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
@@ -35,12 +36,17 @@ namespace SpeedTest.Net.Usage
                 return;
             }
 
-            ExecuteSpeedTest(Server);
+            ExecuteSpeedTest(SpeedTestSource.Speedtest, Server);
+        }
+
+        private void GetConnectionSpeedUsingFast(object sender, RoutedEventArgs e)
+        {
+            ExecuteSpeedTest(SpeedTestSource.Fast);
         }
 
         private void GetConnectionSpeedLocal(object sender, RoutedEventArgs e)
         {
-            ExecuteSpeedTest();
+            ExecuteSpeedTest(SpeedTestSource.Speedtest);
         }
 
         private void CopyToClipboard(object sender, RoutedEventArgs e)
@@ -64,13 +70,25 @@ namespace SpeedTest.Net.Usage
             }
         }
 
-        private async void ExecuteSpeedTest(Server server = null)
+        private async void ExecuteSpeedTest(SpeedTestSource source, Server server = null)
         {
             try
             {
                 SpeedGrid.IsEnabled = false;
-                var speed = await SpeedTestClient.GetDownloadSpeed(server, Enums.SpeedTestUnit.KiloBitsPerSecond);
-                ShowMessage($"Download Speed: {speed?.Speed} {speed.Unit} (Server Id = {speed?.Server?.Id})");
+
+                DownloadSpeed speed = null;
+
+                if (source == SpeedTestSource.Speedtest)
+                    speed = await SpeedTestClient.GetDownloadSpeed(server, SpeedTestUnit.KiloBitsPerSecond);
+                else
+                    speed = await FastClient.GetDownloadSpeed(SpeedTestUnit.KiloBitsPerSecond);
+
+                var message = $"Source: {speed.Source} Download Speed: {speed?.Speed} {speed.Unit}";
+                
+                if (speed?.Server?.Id != null)
+                    message += $" (Server Id = {speed?.Server?.Id})";
+
+                ShowMessage(message);
                 SpeedGrid.IsEnabled = true;
             }
             catch (System.Exception ex)

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace SpeedTest.Net
 {
-    internal class SpeedTestHttpClient : HttpClient
+    internal class SpeedTestHttpClient : BaseHttpClient
     {
         private static readonly ServersList ServersConfig = new ServersList(
             JsonConvert.DeserializeObject<List<Server>>(
@@ -87,28 +87,17 @@ namespace SpeedTest.Net
 
                 var downloadUrls = GenerateDownloadUrls(server, 3);
 
-                double totalSize = 0;
-                var startTime = DateTime.Now;
+                if (downloadUrls?.Any() != true)
+                    throw new Exception("Couldn't fetch downloadable urls");
 
-                foreach (var url in downloadUrls)
-                {
-                    try
-                    {
-                        var bytes = await GetByteArrayAsync(url);
-                        totalSize += bytes.Length;
-                    }
-                    catch { }
-                }
-
-                var elapsedSeconds = (DateTime.Now - startTime).TotalSeconds;
-
-                var bytesPerSecond = totalSize / elapsedSeconds;
+                var speed = await GetDownloadSpeed(downloadUrls, unit);
 
                 return new DownloadSpeed
                 {
                     Server = server,
-                    Speed = bytesPerSecond.FromBytesPerSecondTo(unit),
-                    Unit = unit.ToShortIdentifier()
+                    Speed = speed.Speed,
+                    Unit = speed.Unit,
+                    Source = SpeedTestSource.Speedtest.ToSourceString()
                 };
             }
             catch (Exception ex)

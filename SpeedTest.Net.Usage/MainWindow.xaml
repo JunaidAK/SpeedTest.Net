@@ -15,7 +15,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
-            <RowDefinition Height="50" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <ListView ItemsSource="{Binding ElementName=window, Path=Messages, UpdateSourceTrigger=PropertyChanged}">
@@ -26,16 +26,18 @@
             </ListView.ItemTemplate>
         </ListView>
         
-        <Grid Grid.Row="1" x:Name="SpeedGrid">
+        <Grid Grid.Row="1" x:Name="SpeedGrid" Height="50">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition />
                 <ColumnDefinition />
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <Button x:Name="SpeedButton1" Content="Get Connection Speed using my location" Click="GetConnectionSpeedLocal" />
+            <Button x:Name="SpeedButton1" Content="Connection Speed on my location" Click="GetConnectionSpeedLocal" />
             <Button x:Name="SpeedButton2" Grid.Column="1" Content="Fetch Server" Click="FetchServer" />
-            <Button x:Name="SpeedButton3" Grid.Column="2" Content="Get Connection Speed Using Fetched Server" Click="GetConnectionSpeed" />
+            <Button x:Name="SpeedButton3" Grid.Column="2" Content="Connection Speed from Server" Click="GetConnectionSpeed" />
+            <Button x:Name="SpeedButton4" Grid.Column="3" Content="Connection Speed from fast.com" Click="GetConnectionSpeedUsingFast" />
         </Grid>
     </Grid>
 </Window>
