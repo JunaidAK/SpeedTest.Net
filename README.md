@@ -1,5 +1,10 @@
 # SpeedTest.Net
-A simple https://speedtest.net and https://fast.com client to calculate download speed in KB/s. Made with love using .Net Core.
+A simple https://speedtest.net and https://fast.com client to calculate download speed in multiple units. Made with love using .Net Core.
+
+### Install via nuget
+```
+Install-Package SpeedTest.NetCore -Version 2.0.0-beta
+```
 
 #### Get a Server closest to your location
 ```
