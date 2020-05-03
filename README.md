@@ -1,5 +1,5 @@
 # SpeedTest.Net
-A simple https://speedtest.net client to calculate download speed in KB/s. Made with love using .Net Core.
+A simple https://speedtest.net and https://fast.com client to calculate download speed in KB/s. Made with love using .Net Core.
 
 #### Get a Server closest to your location
 ```
@@ -22,4 +22,9 @@ var speed = await SpeedTestClient.GetDownloadSpeed(server);
 #### Or simply Get Download Speed using your location
 ```
 var speed = await SpeedTestClient.GetDownloadSpeed();
+```
+
+#### If you like your results from fast.com use
+```
+var speed = await FastClient.GetDownloadSpeed();
 ```
