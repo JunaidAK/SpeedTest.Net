@@ -3,7 +3,7 @@ A simple https://speedtest.net and https://fast.com client to calculate download
 
 ### Install via nuget
 ```
-Install-Package SpeedTest.NetCore -Version 2.0.0-beta
+Install-Package SpeedTest.NetCore -Version 2.1.0
 ```
 
 #### Get a Server closest to your location
