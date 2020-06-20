@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using SpeedTest.Net.Enums;
+﻿using SpeedTest.Net.Enums;
 using SpeedTest.Net.Helpers;
 using SpeedTest.Net.LocalData;
 using SpeedTest.Net.Models;
@@ -8,17 +7,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace SpeedTest.Net
 {
     internal class SpeedTestHttpClient : BaseHttpClient
     {
-        private static readonly ServersList ServersConfig = new ServersList(
-            JsonConvert.DeserializeObject<List<Server>>(
-                LocalDataHelper.ReadLocalFile("servers.json")
-            )
-        );
+        private readonly ServersList ServersConfig;
 
         private readonly int[] DownloadSizes = { 350, 750, 1500, 3000 };
 
@@ -66,7 +62,7 @@ namespace SpeedTest.Net
                 if (!string.IsNullOrEmpty(ip?.Trim()))
                     url = $"https://ipinfo.io/{ip}/json";
 
-                var loc = JsonConvert.DeserializeObject<LocationModel>(await GetStringAsync("https://ipinfo.io/json"));
+                var loc = JsonSerializer.Deserialize<LocationModel>(await GetStringAsync("https://ipinfo.io/json"));
                 return await GetServer(loc.Latitude, loc.Longitude);
             }
             catch (Exception ex)
@@ -109,6 +105,12 @@ namespace SpeedTest.Net
         public SpeedTestHttpClient() : base(new HttpClientHandler() { Proxy = new WebProxy() })
         {
             Timeout = TimeSpan.FromSeconds(30);
+
+            ServersConfig = new ServersList(
+                JsonSerializer.Deserialize<List<Server>>(
+                    LocalDataHelper.ReadLocalFile("servers.json")
+                )
+            );
         }
     }
 }

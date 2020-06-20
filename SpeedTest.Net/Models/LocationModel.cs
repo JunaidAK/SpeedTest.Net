@@ -1,29 +1,29 @@
-﻿using Newtonsoft.Json;
-using System.Linq;
+﻿using System.Linq;
+using System.Text.Json.Serialization;
 
 namespace SpeedTest.Net.Models
 {
     internal partial class LocationModel
     {
-        [JsonProperty("ip")]
+        [JsonPropertyName("ip")]
         public string Ip { get; set; }
 
-        [JsonProperty("hostname")]
+        [JsonPropertyName("hostname")]
         public string Hostname { get; set; }
 
-        [JsonProperty("city")]
+        [JsonPropertyName("city")]
         public string City { get; set; }
 
-        [JsonProperty("region")]
+        [JsonPropertyName("region")]
         public string Region { get; set; }
 
-        [JsonProperty("country")]
+        [JsonPropertyName("country")]
         public string Country { get; set; }
 
-        [JsonProperty("loc")]
+        [JsonPropertyName("loc")]
         public string Loc { get; set; }
 
-        [JsonProperty("org")]
+        [JsonPropertyName("org")]
         public string Org { get; set; }
 
 
