@@ -62,7 +62,7 @@ namespace SpeedTest.Net
                 if (!string.IsNullOrEmpty(ip?.Trim()))
                     url = $"https://ipinfo.io/{ip}/json";
 
-                var loc = JsonSerializer.Deserialize<LocationModel>(await GetStringAsync("https://ipinfo.io/json"));
+                var loc = JsonSerializer.Deserialize<LocationModel>(await GetStringAsync(url));
                 return await GetServer(loc.Latitude, loc.Longitude);
             }
             catch (Exception ex)
