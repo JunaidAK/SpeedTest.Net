@@ -1,33 +1,29 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
+using System.Text.Json.Serialization;
 
 namespace SpeedTest.Net.Models
 {
     public class Server
     {
-        [JsonProperty("id", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonPropertyName("id")]
         public int Id { get; set; }
 
-        [JsonProperty("host", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonPropertyName("host")]
         public string Host { get; set; }
 
-        [JsonProperty("lat", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonPropertyName("lat")]
         public double Latitude { get; set; }
 
-        [JsonProperty("lon", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonPropertyName("lon")]
         public double Longitude { get; set; }
 
         [JsonIgnore]
         internal string Url => $"http://{Host}/SpeedTest.Net/upload.php";
+        
+        private readonly Lazy<Coordinate> _geoCoordinate;
 
         [JsonIgnore]
-        private readonly Lazy<Coordinate> geoCoordinate;
-
-        [JsonIgnore]
-        internal Coordinate GeoCoordinate
-        {
-            get { return geoCoordinate.Value; }
-        }
+        internal Coordinate GeoCoordinate => _geoCoordinate.Value;
 
         [JsonIgnore]
         internal double Distance { get; set; }
@@ -35,7 +31,7 @@ namespace SpeedTest.Net.Models
         public Server()
         {
             // note: geo coordinate will not be recalculated on Latitude or Longitude change
-            geoCoordinate = new Lazy<Coordinate>(() => new Coordinate(Latitude, Longitude));
+            _geoCoordinate = new Lazy<Coordinate>(() => new Coordinate(Latitude, Longitude));
         }
     }
 }

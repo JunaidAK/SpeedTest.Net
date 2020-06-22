@@ -1,9 +1,9 @@
-﻿using Newtonsoft.Json;
-using SpeedTest.Net.Enums;
+﻿using SpeedTest.Net.Enums;
 using SpeedTest.Net.Helpers;
 using SpeedTest.Net.Models;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace SpeedTest.Net
@@ -52,7 +52,7 @@ namespace SpeedTest.Net
 
                 var urls = await GetStringAsync($"{Api}?{KeyHttps}={ValueHttps}&{KeyUrlCount}={ValueUrlCount}&{KeyToken}={token}");
 
-                return JsonConvert.DeserializeObject<List<FileUrl>>(urls);
+                return JsonSerializer.Deserialize<List<FileUrl>>(urls);
             }
             catch
             {
