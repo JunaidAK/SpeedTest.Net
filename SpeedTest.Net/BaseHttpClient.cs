@@ -51,6 +51,11 @@ namespace SpeedTest.Net
             {
                 DeleteFile(tempFile);
 
+                if (DefaultRequestHeaders.UserAgent.Count == 0)
+                {
+                    DefaultRequestHeaders.Add("User-Agent", "SpeedTest.Net");
+                }
+
                 using (HttpResponseMessage response = await GetAsync(downloadUrl, HttpCompletionOption.ResponseHeadersRead))
                 {
                     var cancellationTokenSource = new CancellationTokenSource();
